@@ -1,0 +1,101 @@
+diff -uNr wxaui-0.9.1.orig/Makefile wxaui-0.9.1/Makefile
+--- wxaui-0.9.1.orig/Makefile	2006-04-17 00:44:57.388624500 +0200
++++ wxaui-0.9.1/Makefile	2006-04-17 00:34:08.080045250 +0200
+@@ -9,41 +9,30 @@
+ #   Changes:
+ #
+ #        3 Oct 2005 - Created
++#	15 Apr 2006 - Modified by Michal Lukaszek to build a shared library
+ #
+ # ---------------------------------------------------------------------------
+ 
++CXXFLAGS = $(shell ${WXCONFIG} --cxxflags)
++LDFLAGS = $(shell ${WXCONFIG} --libs)
++INC = -I./include
++LIB = libwxaui
++OBJ = manager.o
++vpath %.cpp src
+ 
+-# change these two to match your setup
+-WX_DIR := ../supp/wxGTK-2.6.2
+-WX_CONFIG := ${WX_DIR}/lib/wx/config/inplace-gtk2-unicode-debug-static-2.6
++%.o: %.cpp
++	$(CXX) -fPIC -c $(INC) $(CXXFLAGS) -g -o $@ $<
+ 
+-WX_CFLAGS := $(shell ${WX_CONFIG} --prefix=${WX_DIR} --cppflags)
+-WX_LIBS := $(shell ${WX_CONFIG} --prefix=${WX_DIR} --libs)
++all: $(LIB).so $(LIB).a sample
+ 
+-DEFINES = 
+-CPP = g++
+-CFLAGS = ${WX_CFLAGS} -g -ggdb
+-INCLUDES = -I${WXDIR}/include -I./include
++$(LIB).so: $(OBJ)
++	$(CXX) -fPIC --share -o lib/$@ $^ $(LDFLAGS)
+ 
++$(LIB).a: $(OBJ)
++	$(AR) crs lib/$@ $^
+ 
+-OBJECTS = \
+-	manager.o
+-
+-VPATH=src:lib
+-
+-all: libwxaui.a sample
+-
+-libwxaui.a: $(OBJECTS)
+-	ar rc lib/libwxaui.a $(OBJECTS)
+-	ranlib lib/libwxaui.a
+-
+-sample: $(OBJECTS)
++sample: $(OBJ)
+ 	cd sample && $(MAKE) -w -f Makefile
+ 
+ clean:
+-	rm -f *.o lib/libwxaui.a sample/*.o sample/wxauitest
+-
+-$(OBJECTS): %.o : %.cpp
+-	$(CPP) $(CFLAGS) $(INCLUDES) $(DEFINES) -c $<
+-
+-
++	rm -f *.o lib/$(LIB).a lib/$(LIB).so sample/*.o sample/wxauitest
+diff -uNr wxaui-0.9.1.orig/sample/Makefile wxaui-0.9.1/sample/Makefile
+--- wxaui-0.9.1.orig/sample/Makefile	2006-04-17 00:44:57.388624500 +0200
++++ wxaui-0.9.1/sample/Makefile	2006-04-17 00:43:15.410251250 +0200
+@@ -14,32 +14,21 @@
+ #
+ # ---------------------------------------------------------------------------
+ 
+-
+-WX_DIR := ../../supp/wxGTK-2.6.2
+-WX_CONFIG := ${WX_DIR}/lib/wx/config/inplace-gtk2-unicode-debug-static-2.6
+-
+-WX_CFLAGS := $(shell ${WX_CONFIG} --prefix=${WX_DIR} --cppflags)
+-WX_LIBS := $(shell ${WX_CONFIG} --prefix=${WX_DIR} --libs)
+-
+-
+-
+ EXENAME = wxauitest
+ INCLUDES = -I../include
+-CPP = g++
+-CFLAGS = $(WX_CFLAGS)
+-LIBS = ../lib/libwxaui.a $(WX_LIBS)
++CXXFLAGS = $(shell ${WXCONFIG} --cppflags)
++LIBS = -lwxaui -L../lib $(shell ${WXCONFIG} --libs)
+ 
+ OBJECTS = wxauitest.o
+ 
+-
+ all: $(EXENAME)
+     
+ $(EXENAME): $(OBJECTS) 
+-		$(CPP) $(OBJECTS) $(LIBDIRS) $(LIBS) -o $(EXENAME)
++	$(CXX) -fPIC $(OBJECTS) $(LIBDIRS) $(LIBS) -o $(EXENAME)
+ 
+ clean:
+ 	rm -f *.o *.gch $(EXENAME)
+ 
+ $(OBJECTS): %.o : %.cpp
+-	$(CPP) $(CFLAGS) $(INCLUDES) -c $<
++	$(CXX) -fPIC $(CXXFLAGS) $(INCLUDES) -c $<
+ 

@@ -8,7 +8,7 @@ Version:	0.9.1
 Release:	1
 License:	wxWindows
 Group:		Libraries
-Source0:	wxaui-0.9.1.tar.gz
+Source0:	wxaui-%{version}.tar.gz
 # Source0-md5:	a2125352cd2b2415954294b7b726ca41
 Source1:	http://www.alex.org.uk/wxAUI/%{version}/wxaui.tgz
 # Source1-md5:	dbf79fcd99c12335578718aa7579210b
@@ -20,13 +20,15 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define	wxwidgets_ver	2.6
 
 %description
-wxAUI is an Advanced User Interface library that aims to implement "cutting-edge"
-interface usability and design features so developers can quickly and easily create
-beautiful and usable application interfaces.
+wxAUI is an Advanced User Interface library that aims to implement
+"cutting-edge" interface usability and design features so developers
+can quickly and easily create beautiful and usable application
+interfaces.
 
 %description -l pl
-wxAUI jest zaawansowan± bibliotek± interfejsu u¿ytkownika pozwalaj±c± programistom
-szybko i ³atwo zaprojektowaæ dobrze wygl±daj±cy i wygodny w u¿ytkowaniu interfejs.
+wxAUI jest zaawansowan± bibliotek± interfejsu u¿ytkownika pozwalaj±c±
+programistom szybko i ³atwo zaprojektowaæ profesjonalnie wygl±daj±cy i
+wygodny w u¿ytkowaniu interfejs.
 
 %package static
 Summary:	Header files for wxAUI library
@@ -64,7 +66,7 @@ Requires:	%{name} = %{version}-%{release}
 Sample application using wxAUI library.
 
 %description sample -l pl
-Przyk³adowa aplikacja u¿ywaj±ca  biblioteki wxAUI.
+Przyk³adowa aplikacja u¿ywaj±ca biblioteki wxAUI.
 
 %prep
 %setup -q -n wxaui-%{version}
@@ -107,4 +109,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.a
 
 %files sample
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/wxauitest

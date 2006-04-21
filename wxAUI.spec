@@ -1,3 +1,4 @@
+# TODO: optflags
 
 %bcond_with	unicode		# use wx-gtk2-unicode-config instead of wx-gtk2-ansi-config
 
@@ -30,19 +31,6 @@ wxAUI jest zaawansowan± bibliotek± interfejsu u¿ytkownika pozwalaj±c±
 programistom szybko i ³atwo zaprojektowaæ profesjonalnie wygl±daj±cy i
 wygodny w u¿ytkowaniu interfejs.
 
-%package static
-Summary:	Header files for wxAUI library
-Summary(pl):	Pliki nag³ówkowe biblioteki wxAUI
-Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Requires:	wxGTK2-%{?with_unicode:unicode-}devel >= 2.6.1
-
-%description static
-Static wxAUI library.
-
-%description static -l pl
-Statyczna biblioteka wxAUI.
-
 %package devel
 Summary:	Header files for wxAUI library
 Summary(pl):	Pliki nag³ówkowe biblioteki wxAUI
@@ -56,9 +44,21 @@ Header files for wxAUI library.
 %description devel -l pl
 Pliki nag³ówkowe biblioteki wxAUI.
 
+%package static
+Summary:	Static wxAUI library
+Summary(pl):	Statyczna biblioteka wxAUI
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static wxAUI library.
+
+%description static -l pl
+Statyczna biblioteka wxAUI.
+
 %package sample
 Summary:	Sample application using wxAUI library
-Summary(pl):	Przyk³adowa aplikacja u¿ywaj±ca  biblioteki wxAUI
+Summary(pl):	Przyk³adowa aplikacja u¿ywaj±ca biblioteki wxAUI
 Group:		Applications
 Requires:	%{name} = %{version}-%{release}
 
@@ -80,7 +80,7 @@ rm -f wxXtra
 
 %build
 %{__make} \
-    WXCONFIG="wx-gtk2-%{?with_unicode:unicode}%{!?with_unicode:ansi}-config"
+	WXCONFIG="wx-gtk2-%{?with_unicode:unicode}%{!?with_unicode:ansi}-config"
 
 %install
 rm -rf $RPM_BUILD_ROOT

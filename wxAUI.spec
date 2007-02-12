@@ -3,7 +3,7 @@
 %bcond_with	unicode		# use wx-gtk2-unicode-config instead of wx-gtk2-ansi-config
 
 Summary:	wxAUI - an Advanced User Interface library for wxWidgets
-Summary(pl):	wxAUI - zaawansowana biblioteka interfejsu uøytkownika dla wxWidgets
+Summary(pl.UTF-8):   wxAUI - zaawansowana biblioteka interfejsu u≈ºytkownika dla wxWidgets
 Name:		wxAUI
 Version:	0.9.1
 Release:	1
@@ -26,14 +26,14 @@ wxAUI is an Advanced User Interface library that aims to implement
 can quickly and easily create beautiful and usable application
 interfaces.
 
-%description -l pl
-wxAUI jest zaawansowan± bibliotek± interfejsu uøytkownika pozwalaj±c±
-programistom szybko i ≥atwo zaprojektowaÊ profesjonalnie wygl±daj±cy i
-wygodny w uøytkowaniu interfejs.
+%description -l pl.UTF-8
+wxAUI jest zaawansowanƒÖ bibliotekƒÖ interfejsu u≈ºytkownika pozwalajƒÖcƒÖ
+programistom szybko i ≈Çatwo zaprojektowaƒá profesjonalnie wyglƒÖdajƒÖcy i
+wygodny w u≈ºytkowaniu interfejs.
 
 %package devel
 Summary:	Header files for wxAUI library
-Summary(pl):	Pliki nag≥Ûwkowe biblioteki wxAUI
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe biblioteki wxAUI
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	wxGTK2-%{?with_unicode:unicode-}devel >= 2.6.1
@@ -41,32 +41,32 @@ Requires:	wxGTK2-%{?with_unicode:unicode-}devel >= 2.6.1
 %description devel
 Header files for wxAUI library.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe biblioteki wxAUI.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe biblioteki wxAUI.
 
 %package static
 Summary:	Static wxAUI library
-Summary(pl):	Statyczna biblioteka wxAUI
+Summary(pl.UTF-8):   Statyczna biblioteka wxAUI
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static wxAUI library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka wxAUI.
 
 %package sample
 Summary:	Sample application using wxAUI library
-Summary(pl):	Przyk≥adowa aplikacja uøywaj±ca biblioteki wxAUI
+Summary(pl.UTF-8):   Przyk≈Çadowa aplikacja u≈ºywajƒÖca biblioteki wxAUI
 Group:		Applications
 Requires:	%{name} = %{version}-%{release}
 
 %description sample
 Sample application using wxAUI library.
 
-%description sample -l pl
-Przyk≥adowa aplikacja uøywaj±ca biblioteki wxAUI.
+%description sample -l pl.UTF-8
+Przyk≈Çadowa aplikacja u≈ºywajƒÖca biblioteki wxAUI.
 
 %prep
 %setup -q -n wxaui-%{version}

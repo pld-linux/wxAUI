@@ -3,7 +3,7 @@
 %bcond_with	unicode		# use wx-gtk2-unicode-config instead of wx-gtk2-ansi-config
 
 Summary:	wxAUI - an Advanced User Interface library for wxWidgets
-Summary(pl.UTF-8):   wxAUI - zaawansowana biblioteka interfejsu użytkownika dla wxWidgets
+Summary(pl.UTF-8):	wxAUI - zaawansowana biblioteka interfejsu użytkownika dla wxWidgets
 Name:		wxAUI
 Version:	0.9.1
 Release:	1
@@ -33,7 +33,7 @@ wygodny w użytkowaniu interfejs.
 
 %package devel
 Summary:	Header files for wxAUI library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki wxAUI
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki wxAUI
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	wxGTK2-%{?with_unicode:unicode-}devel >= 2.6.1
@@ -46,7 +46,7 @@ Pliki nagłówkowe biblioteki wxAUI.
 
 %package static
 Summary:	Static wxAUI library
-Summary(pl.UTF-8):   Statyczna biblioteka wxAUI
+Summary(pl.UTF-8):	Statyczna biblioteka wxAUI
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -58,7 +58,7 @@ Statyczna biblioteka wxAUI.
 
 %package sample
 Summary:	Sample application using wxAUI library
-Summary(pl.UTF-8):   Przykładowa aplikacja używająca biblioteki wxAUI
+Summary(pl.UTF-8):	Przykładowa aplikacja używająca biblioteki wxAUI
 Group:		Applications
 Requires:	%{name} = %{version}-%{release}
 

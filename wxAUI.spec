@@ -71,7 +71,7 @@ Przykładowa aplikacja używająca biblioteki wxAUI.
 %prep
 %setup -q -n wxaui-%{version}
 dos2unix Makefile sample/Makefile
-%patch0 -p1
+%patch -P0 -p1
 
 # a nasty hack to apply Alex' patches
 ln -s src wxXtra
